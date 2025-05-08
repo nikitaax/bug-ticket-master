@@ -43,6 +43,11 @@ export default function TicketForm({dispatch, editingTicket}) {
         dispatch({type: editingTicket? 'UPDATE_TICKET' : 'ADD_TICKET', payload: ticketData}); // Dispatch the action to add the ticket
     }
 
+    const handleCancelEdit = () => {
+        dispatch({ type: 'CLEAR_EDITING_TICKET' });
+        clearForm();
+    }
+
 
     return (
         <form className='ticket-form' onSubmit= {handleSubmit}>
@@ -67,6 +72,7 @@ export default function TicketForm({dispatch, editingTicket}) {
                 }
             </fieldset>
             <button type="submit" className='button'> Submit</button>
+            {editingTicket && <button type="button" className='button' onClick={handleCancelEdit}> Cancel Edit</button>}
         </form>
     
     )
